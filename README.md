@@ -8,9 +8,9 @@ PayTrace is a Payment Gateway, much like Authorize.net is a Payment Gateway, but
 
 To use a Payment Gateway you must first have a [Merchant Account](http://magentosupport.help/instant-merchant-account-pre-qualification/).
 
-[Installation guide for the PayTrace Payment Gateway](http://magentosupport.help/forums/forum/paytrace-payment-gateway-extension/)
+[Installation guide for the PayTrace Payment Gateway](http://magentosupport.help/knowledgebase/installing-the-paytrace-payment-gateway/)
 
-Visit the [PayTrace Payment Gateway Forum](magentosupport.help/forums/forum/paytrace-payment-gateway/) for assistance.
+Visit the [PayTrace Payment Gateway Forum](http://magentosupport.help/forums/forum/paytrace-payment-gateway-extension) for assistance.
 
 
 ## change.log
@@ -20,3 +20,4 @@ Visit the [PayTrace Payment Gateway Forum](magentosupport.help/forums/forum/payt
  - Includes Saving credit cards with tokenization for later use.
  - Transmits level 3 card data
  - Process credit cards right from your website
+ - 
