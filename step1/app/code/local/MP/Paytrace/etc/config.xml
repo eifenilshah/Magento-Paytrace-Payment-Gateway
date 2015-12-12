@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Jonathon Byrd (https://merchantprotocol.com)
+ * @copyright  Copyright (c) 2015 Merchant Protocol
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+-->
+<config>
+    <modules>
+        <MP_Paytrace>
+            <version>2.0.0</version>
+        </MP_Paytrace>
+    </modules>
+    
+    <global>
+        <models>
+            <mp_paytrace>
+                <class>MP_Paytrace_Model</class>
+                <resourceModel>mp_paytrace_resource</resourceModel>
+            </mp_paytrace>
+            <mp_paytrace_resource>
+                <class>MP_Paytrace_Model_Resource</class>
+                <entities>
+                    <quote><table>mp_paytrace_sales_quote</table></quote>
+                    <order><table>mp_paytrace_sales_order</table></order>
+                    <card><table>mp_paytrace_payment_methods</table></card>
+                </entities>
+            </mp_paytrace_resource>
+        </models>
+        <resources>
+            <mp_paytrace_setup>
+                <setup>
+                    <module>MP_Paytrace</module>
+                </setup>
+            </mp_paytrace_setup>
+        </resources>
+        <blocks>
+            <mp_paytrace>
+                <class>MP_Paytrace_Block</class>
+            </mp_paytrace>
+        </blocks>
+        <helpers>
+            <mp_paytrace>
+                <class>MP_Paytrace_Helper</class>
+            </mp_paytrace>
+        </helpers>
+        <events>
+            <sales_quote_save_before> <!-- Event Called Before Quote Object is saved -->
+                <observers>
+                    <save_before>
+                        <type>singleton</type>
+                        <class>MP_Paytrace_Model_Observer</class> 
+                        <method>saveQuoteBefore</method>
+                    </save_before>
+                </observers>
+            </sales_quote_save_before>
+            <sales_quote_save_after> <!-- Event called After Quote Object is saved -->
+                <observers>
+                    <save_after>
+                        <type>singleton</type>
+                        <class>MP_Paytrace_Model_Observer</class> 
+                        <method>saveQuoteAfter</method>
+                    </save_after>
+                </observers>
+            </sales_quote_save_after>
+            <sales_quote_load_after> <!-- Event called when Quote Object is loaded -->
+                <observers>
+                    <load_after>
+                        <type>singleton</type>
+                        <class>MP_Paytrace_Model_Observer</class> 
+                        <method>loadQuoteAfter</method>
+                    </load_after>
+                </observers>
+            </sales_quote_load_after>
+            <sales_model_service_quote_submit_after> <!--  Event called after order placed -->
+                <observers>
+                    <sales_model_service_quote_submit_after>
+                        <type>singleton</type>
+                        <class>MP_Paytrace_Model_Observer</class> 
+                        <method>convertQuoteToOrder</method>
+                    </sales_model_service_quote_submit_after>
+                </observers>
+            </sales_model_service_quote_submit_after>
+            <sales_order_save_after> <!--  Event called after order saved -->
+                <observers>
+                    <sales_model_service_quote_submit_after>
+                        <type>singleton</type>
+                        <class>MP_Paytrace_Model_Observer</class> 
+                        <method>saveOrderAfter</method>
+                    </sales_model_service_quote_submit_after>
+                </observers>
+            </sales_order_save_after>
+            <sales_order_load_after> <!-- Event called after Order Object is loaded -->
+                <observers>
+                    <mp_paytrace>
+                        <type>singleton</type>
+                        <class>MP_Paytrace_Model_Observer</class> 
+                        <method>loadOrderAfter</method>
+                    </mp_paytrace>
+                </observers>
+            </sales_order_load_after>
+        </events>
+    </global>
+    
+    <frontend>
+        <secure_url>
+            <revolution_mp_paytrace>/mp_paytrace/revolution</revolution_mp_paytrace>
+        </secure_url>
+        <routers>
+            <mp_paytrace>
+                <use>standard</use>
+                <args>
+                    <module>MP_Paytrace</module>
+                    <frontName>mp_paytrace</frontName>
+                </args>
+            </mp_paytrace>
+        </routers>
+        <layout>
+            <updates>
+                <recorder>
+                    <file>paytrace.xml</file>
+                </recorder>
+            </updates>
+        </layout>
+        
+    </frontend>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MP_Paytrace before="Mage_Adminhtml">MP_Paytrace_Adminhtml</MP_Paytrace>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mp_paytrace translate="title" module="mp_paytrace">
+                                            <title>Merchant Protocol CC Processing</title>
+                                        </mp_paytrace>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <default>
+        <payment>
+        	
+            <mp_paytrace>
+                <title>Credit, Debit and/or Purchase Card</title>
+                <active>0</active>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <cgi_url>https://PayTrace.com/API/gateway.pay</cgi_url>
+                <debug>0</debug>
+                <email_customer>0</email_customer>
+                <login backend_model="adminhtml/system_config_backend_encrypted"/>
+                <merchant_email/>
+                <model>mp_paytrace/revolution</model>
+                <order_status>processing</order_status>
+                <payment_action>authorize</payment_action>
+                <test>0</test>
+                <tax_id></tax_id>
+                <trans_key backend_model="adminhtml/system_config_backend_encrypted"/>
+                <allowspecific>0</allowspecific>
+                <currency>USD</currency>
+                <partial_authorization_checksum_checking>1</partial_authorization_checksum_checking>
+                
+                <enable_level3>0</enable_level3>
+            </mp_paytrace>
+        </payment>
+    </default>
+</config>

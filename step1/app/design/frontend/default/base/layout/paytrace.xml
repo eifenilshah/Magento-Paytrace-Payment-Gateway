@@ -1,0 +1,34 @@
+<layout version="0.1.0">
+<!-- 
+/**
+ * @author Jonathon Byrd (https://merchantprotocol.com)
+ * @copyright  Copyright (c) 2015 Merchant Protocol
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+
+<!--     <mp_paytrace_cc_index> -->
+<!--         <update handle="customer_account" /> -->
+<!--         <reference name="my.account.wrapper"> -->
+<!--             <block type="mp_paytrace/account_cards" name="cards" template="paytrace/cards.phtml"/> -->
+<!--         </reference> -->
+<!--     </mp_paytrace_cc_index> -->
+    
+<!--     <mp_paytrace_cc_edit> -->
+<!--         <update handle="customer_account" /> -->
+<!--         <reference name="my.account.wrapper"> -->
+<!--             <block type="mp_paytrace/account_card_edit" name="cards" template="paytrace/card/edit.phtml"/> -->
+<!--         </reference> -->
+<!--     </mp_paytrace_cc_edit> -->
+    
+<!--     <customer_account> -->
+<!--         <reference name="customer_account_navigation"> -->
+<!--             <action method="addLink" translate="label" module="mp_paytrace"> -->
+<!--                 <name>mp_paytrace_cards</name> -->
+<!--                 <path>mp_paytrace/cc</path> -->
+<!--                 <label>My Payment Methods</label> -->
+<!--             </action> -->
+<!--         </reference> -->
+<!--     </customer_account> -->
+    
+</layout>

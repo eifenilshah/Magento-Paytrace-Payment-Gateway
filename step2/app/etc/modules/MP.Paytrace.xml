@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<MP_Paytrace>
+			<active>true</active>
+			<codePool>local</codePool>
+		</MP_Paytrace>
+	</modules>
+</config>
