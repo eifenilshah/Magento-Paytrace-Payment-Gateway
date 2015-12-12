@@ -13,11 +13,19 @@ To use a Payment Gateway you must first have a [Merchant Account](https://mercha
 Visit the [PayTrace Payment Gateway Forum](https://merchantprotocol.com/forums/forum/paytrace-payment-gateway-extension) for assistance.
 
 
-## change.log
+## CHANGELOG
 
-*v1.0*
+*v2.0.0*
+
+It was the goal of this version to launch something that was ready for the public.
+
+ - Removed the Level 3 Payment processing support
+ - Removed multi-card support
+ - Updated the file structure
+ - Fixed all known bugs
+
+*v1.0.0*
 
  - Includes Saving credit cards with tokenization for later use.
  - Transmits level 3 card data
  - Process credit cards right from your website
- - 
